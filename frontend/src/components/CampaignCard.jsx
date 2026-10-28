@@ -1,11 +1,14 @@
 import {
+  canWithdraw,
   formatEth,
   formatTimestamp,
   progressPercent,
   shortAddress,
 } from "../lib/format.js";
+import DonateForm from "./DonateForm.jsx";
+import WithdrawButton from "./WithdrawButton.jsx";
 
-export default function CampaignCard({ campaign }) {
+export default function CampaignCard({ campaign, contract, account, onChanged }) {
   const { id, title, description, owner, goal, totalRaised, withdrawn, donations } = campaign;
   const percent = progressPercent(totalRaised, goal);
 
@@ -29,6 +32,12 @@ export default function CampaignCard({ campaign }) {
         {formatEth(totalRaised)} / {formatEth(goal)} ETH ({percent}%)
         {withdrawn && <span className="success"> - dana sudah ditarik</span>}
       </p>
+
+      {!withdrawn && <DonateForm contract={contract} campaignId={id} onDonated={onChanged} />}
+
+      {canWithdraw(campaign, account) && (
+        <WithdrawButton contract={contract} campaignId={id} onWithdrawn={onChanged} />
+      )}
 
       <details>
         <summary>Riwayat donasi ({donations.length})</summary>

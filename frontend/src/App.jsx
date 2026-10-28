@@ -46,7 +46,14 @@ export default function App() {
           <p className="muted">Contract: {contractAddress}</p>
           <CreateCampaignForm contract={contract} onCreated={refresh} />
           <h2>Kampanye</h2>
-          <CampaignList campaigns={campaigns} loading={loading} error={loadError} />
+          <CampaignList
+            campaigns={campaigns}
+            loading={loading}
+            error={loadError}
+            contract={contract}
+            account={account}
+            onChanged={refresh}
+          />
         </>
       )}
     </main>
