@@ -56,7 +56,31 @@ npm run node
 npm run deploy:local
 ```
 
-Frontend (`frontend/`) akan ditambahkan di tahap berikutnya.
+### Menjalankan frontend
+
+```bash
+cd frontend
+npm install
+npm run dev      # buka http://localhost:5173
+npm test         # test fungsi bantu frontend
+```
+
+### Memakai MetaMask dengan node lokal
+
+1. Pastikan `npm run node` dan `npm run deploy:local` sudah jalan (lihat di atas).
+2. Di MetaMask, tambah jaringan manual:
+   - Network name: `Hardhat Local`
+   - RPC URL: `http://127.0.0.1:8545`
+   - Chain ID: `31337`
+   - Currency symbol: `ETH`
+3. Import satu akun uji: salin **private key** salah satu akun dari output
+   `npm run node` (akun-akun ini publik dan hanya untuk lokal; **jangan dipakai
+   di jaringan asli**).
+4. Buka frontend, klik **Hubungkan MetaMask**.
+
+Kalau node lokal di-restart, MetaMask kadang menolak transaksi karena nonce
+lama. Reset lewat *Settings > Advanced > Clear activity tab data*, lalu deploy
+ulang.
 
 ---
 
