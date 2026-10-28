@@ -4,7 +4,8 @@ Aplikasi donasi terdesentralisasi (dApp) di atas Ethereum. Pengguna membuat
 kampanye donasi, mengirim donasi lewat wallet MetaMask memakai ETH uji, dan
 memeriksa riwayat transaksi yang tercatat permanen di blockchain.
 
-> **Status:** dalam perencanaan. Lihat [PLAN.md](./PLAN.md) untuk rencana lengkap.
+> **Status:** smart contract, test, dan script deploy sudah jalan. Frontend belum dibuat.
+> Lihat [PLAN.md](./PLAN.md) untuk rencana lengkap.
 > Project ini dibuat untuk tujuan belajar & portofolio.
 
 ---
@@ -36,29 +37,26 @@ memeriksa riwayat transaksi yang tercatat permanen di blockchain.
 
 ---
 
-## Cara Menjalankan (akan diisi saat implementasi)
+## Cara Menjalankan
 
 ```bash
 # 1. Install dependency
 npm install
 
 # 2. Compile smart contract
-npx hardhat compile
+npm run compile
 
 # 3. Jalankan test
-npx hardhat test
+npm test
 
 # 4. Jalankan blockchain lokal
-npx hardhat node
+npm run node
 
 # 5. Deploy ke jaringan lokal (terminal baru)
-npx hardhat run scripts/deploy.js --network localhost
-
-# 6. Jalankan frontend
-cd frontend
-npm install
-npm run dev
+npm run deploy:local
 ```
+
+Frontend (`frontend/`) akan ditambahkan di tahap berikutnya.
 
 ---
 
