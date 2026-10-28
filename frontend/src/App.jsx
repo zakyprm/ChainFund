@@ -4,6 +4,7 @@ import { useCampaigns } from "./hooks/useCampaigns.js";
 import { getContract, getContractAddress, getSupportedChainIds } from "./lib/contract.js";
 import WalletBar from "./components/WalletBar.jsx";
 import CampaignList from "./components/CampaignList.jsx";
+import CreateCampaignForm from "./components/CreateCampaignForm.jsx";
 
 export default function App() {
   const { account, chainId, signer, error, hasWallet, connect } = useWallet();
@@ -15,7 +16,7 @@ export default function App() {
     [signer, chainId, contractAddress]
   );
 
-  const { campaigns, loading, error: loadError } = useCampaigns(contract);
+  const { campaigns, loading, error: loadError, refresh } = useCampaigns(contract);
 
   return (
     <main className="container">
@@ -43,6 +44,7 @@ export default function App() {
       {contract && (
         <>
           <p className="muted">Contract: {contractAddress}</p>
+          <CreateCampaignForm contract={contract} onCreated={refresh} />
           <h2>Kampanye</h2>
           <CampaignList campaigns={campaigns} loading={loading} error={loadError} />
         </>
