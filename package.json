@@ -1,0 +1,29 @@
+{
+  "name": "chainfund",
+  "version": "1.0.0",
+  "description": "Aplikasi donasi terdesentralisasi (dApp) di atas Ethereum. Pengguna membuat kampanye donasi, mengirim donasi lewat wallet MetaMask memakai ETH uji, dan memeriksa riwayat transaksi yang tercatat permanen di blockchain.",
+  "private": true,
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "node": "hardhat node",
+    "deploy:local": "hardhat run scripts/deploy.js --network localhost"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zakyprm/ChainFund.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/zakyprm/ChainFund/issues"
+  },
+  "homepage": "https://github.com/zakyprm/ChainFund#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "6.1.2",
+    "dotenv": "18.0.9",
+    "hardhat": "2.29.1"
+  }
+}
