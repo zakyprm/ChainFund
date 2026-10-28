@@ -1,10 +1,21 @@
+import { useMemo } from "react";
 import { useWallet } from "./hooks/useWallet.js";
-import { getContractAddress, getSupportedChainIds } from "./lib/contract.js";
+import { useCampaigns } from "./hooks/useCampaigns.js";
+import { getContract, getContractAddress, getSupportedChainIds } from "./lib/contract.js";
 import WalletBar from "./components/WalletBar.jsx";
+import CampaignList from "./components/CampaignList.jsx";
 
 export default function App() {
-  const { account, chainId, error, hasWallet, connect } = useWallet();
+  const { account, chainId, signer, error, hasWallet, connect } = useWallet();
   const contractAddress = chainId ? getContractAddress(chainId) : null;
+
+  // Signer dipakai agar nanti bisa kirim transaksi; untuk baca juga bisa.
+  const contract = useMemo(
+    () => (signer && contractAddress ? getContract(signer, chainId) : null),
+    [signer, chainId, contractAddress]
+  );
+
+  const { campaigns, loading, error: loadError } = useCampaigns(contract);
 
   return (
     <main className="container">
@@ -29,8 +40,12 @@ export default function App() {
         </p>
       )}
 
-      {account && contractAddress && (
-        <p className="muted">Contract: {contractAddress}</p>
+      {contract && (
+        <>
+          <p className="muted">Contract: {contractAddress}</p>
+          <h2>Kampanye</h2>
+          <CampaignList campaigns={campaigns} loading={loading} error={loadError} />
+        </>
       )}
     </main>
   );
